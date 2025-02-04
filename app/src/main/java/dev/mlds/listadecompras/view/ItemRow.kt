@@ -1,4 +1,3 @@
-import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
@@ -21,8 +20,7 @@ fun ItemRow(
         modifier = modifier
             .fillMaxWidth()
             .padding(8.dp)
-            .clickable { onItemChecked() }
-            .animateContentSize(), // Suaviza mudanças na UI
+            .clickable { onItemChecked() },
         verticalAlignment = Alignment.CenterVertically
     ) {
         Checkbox(
@@ -30,12 +28,10 @@ fun ItemRow(
             onCheckedChange = { onItemChecked() }
         )
 
-        Text(
-            text = item.name,
-            modifier = Modifier
-                .weight(1f)
-                .padding(start = 8.dp)
-        )
+        Column(modifier = Modifier.weight(1f).padding(start = 8.dp)) {
+            Text(text = item.name)
+            Text(text = "R$ %.2f".format(item.value))
+        }
 
         IconButton(
             onClick = { onItemRemoved() }

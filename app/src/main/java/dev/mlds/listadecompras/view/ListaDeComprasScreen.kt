@@ -1,3 +1,4 @@
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -11,6 +12,7 @@ import androidx.navigation.NavController
 import androidx.lifecycle.viewmodel.compose.viewModel
 import dev.mlds.listadecompras.ListaDeComprasViewModel
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun ListaDeComprasScreen(
     modifier: Modifier,
@@ -31,7 +33,8 @@ fun ListaDeComprasScreen(
                     ItemRow(
                         item = item,
                         onItemChecked = { viewModel.toggleItemChecked(item) },
-                        onItemRemoved = { viewModel.removeItem(item) }
+                        onItemRemoved = { viewModel.removeItem(item) },
+                        modifier = Modifier.animateItemPlacement()
                     )
                 }
             }
