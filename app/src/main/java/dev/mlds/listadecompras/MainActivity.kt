@@ -1,6 +1,5 @@
 package dev.mlds.listadecompras
 
-import ListaDeComprasScreen
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -9,6 +8,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.*
 import dev.mlds.listadecompras.ui.theme.ListaDeComprasTheme
 import dev.mlds.listadecompras.view.CadastroItemScreen
+import dev.mlds.listadecompras.view.ListaDeComprasScreen
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -20,7 +20,7 @@ class MainActivity : ComponentActivity() {
 
                 NavHost(navController, startDestination = "lista") {
                     composable("lista") {
-                        ListaDeComprasScreen(modifier = Modifier, navController, viewModel)
+                        ListaDeComprasScreen(Modifier, navController, viewModel)
                     }
                     composable("cadastro") {
                         CadastroItemScreen(navController) { name, value ->
