@@ -1,15 +1,61 @@
-*.iml
-.gradle
+# Diretórios e arquivos do Android Studio
+/.idea/
+/.gradle/
 /local.properties
-/.idea/caches
-/.idea/libraries
-/.idea/modules.xml
-/.idea/workspace.xml
-/.idea/navEditor.xml
-/.idea/assetWizardSettings.xml
+/.cxx/
+/captures/
+
+# Builds
+/build/
+/app/build/
+/*.iml
+
+# Cache do Kotlin
+/.kotlin/
+/out/
+
+# Arquivos de log
+*.log
+
+# Arquivos do sistema operacional
 .DS_Store
-/build
-/captures
-.externalNativeBuild
-.cxx
-local.properties
+Thumbs.db
+
+# Credenciais e chaves API
+/secrets.properties
+/google-services.json
+/firebase/
+
+# Dependências do Gradle (geradas automaticamente)
+.gradle/
+*.jar
+*.war
+*.ear
+*.apk
+*.ap_
+/*.cxx/
+*.class
+
+# Arquivos do Android Test
+*.test
+
+# Configurações de execução/debug do Android Studio
+*.run.xml
+
+# Arquivos de saída do NDK
+/obj/
+*.so
+*.o
+
+# Arquivos do IntelliJ
+*.iml
+*.ipr
+*.iws
+
+# Relatórios de testes e cobertura
+/test-results/
+*.ec
+*.hprof
+/lint/
+
+# Arquivos
