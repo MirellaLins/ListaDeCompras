@@ -25,16 +25,22 @@ fun ListaDeComprasScreen(
                 Icon(Icons.Filled.Add, contentDescription = "Adicionar Item")
             }
         },
-        modifier = Modifier.fillMaxSize().padding(16.dp)
+        modifier = modifier
+            .fillMaxSize()
+            .padding(16.dp)
     ) { innerPadding ->
-        Column(modifier = Modifier.padding(innerPadding)) {
+        Text("Listagem dos produtos", style = MaterialTheme.typography.headlineMedium)
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+        Column(modifier = modifier.padding(innerPadding)) {
             LazyColumn {
                 items(viewModel.items) { item ->
                     ItemRow(
                         item = item,
                         onItemChecked = { viewModel.toggleItemChecked(item) },
                         onItemRemoved = { viewModel.removeItem(item) },
-                        modifier = Modifier.animateItemPlacement()
+                        modifier = modifier.animateItemPlacement()
                     )
                 }
             }

@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "224632271009",
+    "firebase_url": "https://listadecompras-fd802-default-rtdb.firebaseio.com",
+    "project_id": "listadecompras-fd802",
+    "storage_bucket": "listadecompras-fd802.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:224632271009:android:1e1be0d02daaa46e6440e0",
+        "android_client_info": {
+          "package_name": "dev.mlds.listadecompras"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAJR2CWUvXtDcQz3Xou-1h_gAaiMIIk05Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
