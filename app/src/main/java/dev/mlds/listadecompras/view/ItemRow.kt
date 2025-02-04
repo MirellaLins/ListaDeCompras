@@ -24,7 +24,7 @@ fun ItemRow(
         verticalAlignment = Alignment.CenterVertically
     ) {
         Checkbox(
-            checked = item.isChecked,
+            checked = item.checked,
             onCheckedChange = { onItemChecked() }
         )
 

@@ -1,8 +1,7 @@
 package dev.mlds.listadecompras.model
 
 data class Item(
-    val id: Int,
-    val name: String,
-    val value: Double,
-    var isChecked: Boolean = false
+    val name: String = "",
+    val value: Double = 0.0,
+    var checked: Boolean = false
 )
