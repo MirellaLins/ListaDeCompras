@@ -8,9 +8,8 @@ class ListaDeComprasViewModel : ViewModel() {
     private val _items = mutableStateListOf<Item>()
     val items: List<Item> get() = _items
 
-    fun addItem(name: String) {
-        val newItem = Item(id = _items.size + 1, name = name)
-        _items.add(newItem)
+    fun addItem(name: String, value: Double) {
+        _items.add(Item(id = _items.size + 1, name = name, value = value))
     }
 
     fun toggleItemChecked(item: Item) {
