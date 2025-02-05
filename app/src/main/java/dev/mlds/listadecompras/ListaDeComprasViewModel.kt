@@ -67,4 +67,19 @@ class ListaDeComprasViewModel : ViewModel() {
                 override fun onCancelled(error: DatabaseError) {}
             })
     }
+
+    fun toggleAllItems(items: List<Item>, selectAll: Boolean) {
+        items.forEach { item ->
+            database.orderByChild("name").equalTo(item.name)
+                .addListenerForSingleValueEvent(object : ValueEventListener {
+                    override fun onDataChange(snapshot: DataSnapshot) {
+                        snapshot.children.forEach {
+                            it.ref.child("checked").setValue(selectAll)
+                        }
+                    }
+
+                    override fun onCancelled(error: DatabaseError) {}
+                })
+        }
+    }
 }

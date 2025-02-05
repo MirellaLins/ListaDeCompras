@@ -52,12 +52,48 @@ fun ListaDeComprasScreen(
 
             Spacer(modifier = Modifier.height(16.dp))
             LazyColumn {
-                items(items) { item ->
+
+                val (checkedItems, uncheckedItems) = items.partition { it.checked }
+
+                // Seção de itens não selecionados
+                if (uncheckedItems.isNotEmpty()) {
+                    stickyHeader {
+                        SectionHeader(
+                            title = "Itens",
+                            items = uncheckedItems,
+                            onToggleAll = { selectAll ->
+                                viewModel.toggleAllItems(uncheckedItems, selectAll)
+                            }
+                        )
+                    }
+                }
+                items(uncheckedItems, key = { it.name }) { item -> // Adicionando chave única
                     ItemRow(
                         item = item,
                         onItemChecked = { viewModel.toggleItemChecked(item) },
                         onItemRemoved = { viewModel.removeItem(item) },
-                        modifier = modifier.animateItemPlacement()
+                        modifier = Modifier.animateItemPlacement()
+                    )
+                }
+
+                // Seção de itens selecionados
+                if (checkedItems.isNotEmpty()) {
+                    stickyHeader {
+                        SectionHeader(
+                            title = "Selecionados",
+                            items = checkedItems,
+                            onToggleAll = { selectAll ->
+                                viewModel.toggleAllItems(checkedItems, selectAll)
+                            }
+                        )
+                    }
+                }
+                items(checkedItems, key = { it.name }) { item -> // Adicionando chave única
+                    ItemRow(
+                        item = item,
+                        onItemChecked = { viewModel.toggleItemChecked(item) },
+                        onItemRemoved = { viewModel.removeItem(item) },
+                        modifier = Modifier.animateItemPlacement()
                     )
                 }
             }
