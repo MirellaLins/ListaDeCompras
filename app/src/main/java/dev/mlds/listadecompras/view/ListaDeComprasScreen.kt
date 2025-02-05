@@ -1,6 +1,5 @@
 package dev.mlds.listadecompras.view
 
-import ItemRow
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -24,6 +23,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import dev.mlds.listadecompras.ListaDeComprasViewModel
+import dev.mlds.listadecompras.view.componentes.SwipeToRevealItem
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
@@ -68,11 +68,11 @@ fun ListaDeComprasScreen(
                     }
                 }
                 items(uncheckedItems, key = { it.name }) { item -> // Adicionando chave única
-                    ItemRow(
+                    SwipeToRevealItem(
                         item = item,
                         onItemChecked = { viewModel.toggleItemChecked(item) },
-                        onItemRemoved = { viewModel.removeItem(item) },
-                        modifier = Modifier.animateItemPlacement()
+                        onEdit = { /*viewModel.editItem(item)*/ },
+                        onDelete = { viewModel.removeItem(item) }
                     )
                 }
 
@@ -89,11 +89,11 @@ fun ListaDeComprasScreen(
                     }
                 }
                 items(checkedItems, key = { it.name }) { item -> // Adicionando chave única
-                    ItemRow(
+                    SwipeToRevealItem(
                         item = item,
                         onItemChecked = { viewModel.toggleItemChecked(item) },
-                        onItemRemoved = { viewModel.removeItem(item) },
-                        modifier = Modifier.animateItemPlacement()
+                        onEdit = { /*viewModel.editItem(item)*/ },
+                        onDelete = { viewModel.removeItem(item) }
                     )
                 }
             }
