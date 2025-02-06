@@ -67,7 +67,7 @@ fun ListaDeComprasScreen(
                         )
                     }
                 }
-                items(uncheckedItems, key = { it.name }) { item -> // Adicionando chave única
+                items(uncheckedItems, key = { it.id }) { item -> // Adicionando chave única
                     SwipeToRevealItem(
                         item = item,
                         onItemChecked = { viewModel.toggleItemChecked(item) },
@@ -88,7 +88,7 @@ fun ListaDeComprasScreen(
                         )
                     }
                 }
-                items(checkedItems, key = { it.name }) { item -> // Adicionando chave única
+                items(checkedItems, key = { it.id }) { item -> // Adicionando chave única
                     SwipeToRevealItem(
                         item = item,
                         onItemChecked = { viewModel.toggleItemChecked(item) },

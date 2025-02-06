@@ -6,6 +6,7 @@ import androidx.activity.compose.setContent
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.*
+import dev.mlds.listadecompras.service.AuthenticateDevice.authenticateDevice
 import dev.mlds.listadecompras.ui.theme.ListaDeComprasTheme
 import dev.mlds.listadecompras.view.CadastroItemScreen
 import dev.mlds.listadecompras.view.ListaDeComprasScreen
@@ -13,6 +14,7 @@ import dev.mlds.listadecompras.view.ListaDeComprasScreen
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        authenticateDevice()
         setContent {
             ListaDeComprasTheme {
                 val navController = rememberNavController()
