@@ -1,5 +1,6 @@
 package dev.mlds.listadecompras
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
@@ -9,9 +10,11 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.database
+import com.google.firebase.database.getValue
 import dev.mlds.listadecompras.model.Item
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.Flow
 
 class ListaDeComprasViewModel : ViewModel() {
     private val auth: FirebaseAuth = Firebase.auth
@@ -137,5 +140,24 @@ class ListaDeComprasViewModel : ViewModel() {
         } else {
             println("Erro: Usuário não autenticado.")
         }
+    }
+
+    fun getItemById(itemId: String): Item? {
+        val userItemsRef = database.child("listas").child(auth.currentUser?.uid ?: "")
+            .child(itemId)
+
+        var item: Item? = null
+
+        userItemsRef.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                item = snapshot.child(itemId).getValue(Item::class.java)
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Log.e("ListaDeComprasViewModel.getItemById()", error.message)
+            }
+        })
+
+        return item
     }
 }

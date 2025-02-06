@@ -73,7 +73,8 @@ fun ListaDeComprasScreen(
                         item = item,
                         onItemChecked = { viewModel.toggleItemChecked(item) },
                         onEdit = { navController.navigate("cadastro") },
-                        onDelete = { viewModel.removeItem(item) }
+                        onDelete = { viewModel.removeItem(item) },
+                        onClick = { navController.navigate("detalhe/${item.id}") }
                     )
                 }
 
@@ -94,7 +95,8 @@ fun ListaDeComprasScreen(
                         item = item,
                         onItemChecked = { viewModel.toggleItemChecked(item) },
                         onEdit = { navController.navigate("cadastro") },
-                        onDelete = { viewModel.removeItem(item) }
+                        onDelete = { viewModel.removeItem(item) },
+                        onClick = { navController.navigate("detalhe/${item.id}") }
                     )
                 }
             }
