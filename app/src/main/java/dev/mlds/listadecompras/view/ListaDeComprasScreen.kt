@@ -71,7 +71,7 @@ fun ListaDeComprasScreen(
                     SwipeToRevealItem(
                         item = item,
                         onItemChecked = { viewModel.toggleItemChecked(item) },
-                        onEdit = { /*viewModel.editItem(item)*/ },
+                        onEdit = { navController.navigate("cadastro") },
                         onDelete = { viewModel.removeItem(item) }
                     )
                 }
@@ -92,7 +92,7 @@ fun ListaDeComprasScreen(
                     SwipeToRevealItem(
                         item = item,
                         onItemChecked = { viewModel.toggleItemChecked(item) },
-                        onEdit = { /*viewModel.editItem(item)*/ },
+                        onEdit = { navController.navigate("cadastro") },
                         onDelete = { viewModel.removeItem(item) }
                     )
                 }

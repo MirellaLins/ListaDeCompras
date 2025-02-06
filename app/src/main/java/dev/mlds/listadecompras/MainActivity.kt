@@ -23,8 +23,8 @@ class MainActivity : ComponentActivity() {
                         ListaDeComprasScreen(Modifier, navController, viewModel)
                     }
                     composable("cadastro") {
-                        CadastroItemScreen(navController) { name, value ->
-                            viewModel.addItem(name, value)
+                        CadastroItemScreen(navController) { name, value, userLocation ->
+                            viewModel.addItem(name, value, userLocation)
                         }
                     }
                 }

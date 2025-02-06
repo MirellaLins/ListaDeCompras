@@ -34,7 +34,7 @@ fun SwipeToRevealItem(
     Box(
         modifier = Modifier
             .fillMaxWidth()
-            .height(72.dp)
+            .wrapContentHeight()
     ) {
         // Fundo que aparece ao arrastar (botões à esquerda)
         Row(
