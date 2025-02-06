@@ -1,4 +1,4 @@
-package dev.mlds.listadecompras.view
+package dev.mlds.listadecompras.view.screens
 
 import android.annotation.SuppressLint
 import android.content.Context

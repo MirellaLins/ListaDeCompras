@@ -1,4 +1,4 @@
-package dev.mlds.listadecompras.view
+package dev.mlds.listadecompras.view.componentes
 
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth

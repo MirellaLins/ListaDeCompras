@@ -25,6 +25,7 @@ fun SwipeToRevealItem(
     onItemChecked: () -> Unit,
     onEdit: () -> Unit,
     onDelete: () -> Unit,
+    onClick: () -> Unit
 ) {
     var offsetX by remember { mutableStateOf(0f) }
     val itemWidth = 200.dp // Largura do item principal
@@ -76,7 +77,7 @@ fun SwipeToRevealItem(
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .clickable { onItemChecked() }
+                    .clickable { onClick() }
                     .padding(16.dp),
                 verticalAlignment = Alignment.CenterVertically
             ) {

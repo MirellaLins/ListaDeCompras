@@ -1,4 +1,4 @@
-package dev.mlds.listadecompras.view
+package dev.mlds.listadecompras.view.screens
 
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.Column
@@ -23,6 +23,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import dev.mlds.listadecompras.ListaDeComprasViewModel
+import dev.mlds.listadecompras.view.componentes.SectionHeader
 import dev.mlds.listadecompras.view.componentes.SwipeToRevealItem
 
 @OptIn(ExperimentalFoundationApi::class)
