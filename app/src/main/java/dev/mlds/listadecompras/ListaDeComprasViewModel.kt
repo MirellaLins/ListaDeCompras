@@ -32,8 +32,8 @@ class ListaDeComprasViewModel : ViewModel() {
         })
     }
 
-    fun addItem(name: String, value: Double) {
-        val newItem = Item(name, value)
+    fun addItem(name: String, value: Double, userLocation: String?) {
+        val newItem = Item(name, value, userLocation)
         val newItemRef = database.push()
         newItemRef.setValue(newItem)
     }
