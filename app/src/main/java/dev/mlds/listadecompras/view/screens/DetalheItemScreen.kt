@@ -16,6 +16,8 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
@@ -29,12 +31,13 @@ fun DetalheItemScreen(
     viewModel: ListaDeComprasViewModel, // <-- Para buscar o item pelo ID
     navController: NavController
 ) {
-    val item = Item()
+    val item by viewModel.item.collectAsState(initial = null)
+    viewModel.getItemById(itemId)
 
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text(item.name ?: "Carregando...") },
+                title = { Text(item?.name ?: "Carregando...") },
                 navigationIcon = {
                     IconButton(onClick = { navController.popBackStack() }) {
                         Icon(Icons.Default.ArrowBack, contentDescription = "Voltar")
@@ -43,7 +46,7 @@ fun DetalheItemScreen(
             )
         }
     ) { padding ->
-        item.let { i ->
+        item?.let { i ->
             Column(
                 modifier = Modifier
                     .fillMaxSize()

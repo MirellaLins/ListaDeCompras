@@ -23,6 +23,9 @@ class ListaDeComprasViewModel : ViewModel() {
     private val _items = MutableStateFlow<List<Item>>(emptyList())
     val items: StateFlow<List<Item>> = _items
 
+    private val _item = MutableStateFlow<Item?>(null)
+    val item: StateFlow<Item?> = _item
+
     init {
         authenticateAndFetchItems()
     }
@@ -142,22 +145,23 @@ class ListaDeComprasViewModel : ViewModel() {
         }
     }
 
-    fun getItemById(itemId: String): Item? {
-        val userItemsRef = database.child("listas").child(auth.currentUser?.uid ?: "")
-            .child(itemId)
+    fun getItemById(itemId: String) {
+        val userItemRef = database.child("listas").child(auth.currentUser?.uid ?: "")
 
-        var item: Item? = null
-
-        userItemsRef.addValueEventListener(object : ValueEventListener {
+        userItemRef.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
-                item = snapshot.child(itemId).getValue(Item::class.java)
+                for (child in snapshot.children) { // Percorre todos os itens
+                    val item = child.getValue(Item::class.java)
+                    if (item?.id == itemId) {  // Verifica se o ID bate
+                        _item.value = item
+                        break
+                    }
+                }
             }
 
             override fun onCancelled(error: DatabaseError) {
                 Log.e("ListaDeComprasViewModel.getItemById()", error.message)
             }
         })
-
-        return item
     }
 }
