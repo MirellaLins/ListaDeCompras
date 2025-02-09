@@ -64,9 +64,9 @@ class ListaDeComprasViewModel : ViewModel() {
         val user = auth.currentUser
         val uid = user?.uid
         if (uid != null) {
-            val newItem = Item(name = name, value = value, userLocation = userLocation)
-            val userItemsRef = database.child("listas").child(uid)
-            val newItemRef = userItemsRef.push()
+            val newItemRef = database.child("listas").child(uid).push()
+            val itemId = newItemRef.key // Obtém o ID gerado pelo Firebase
+            val newItem = Item(id = itemId, name = name, value = value, userLocation = userLocation)
             newItemRef.setValue(newItem)
         } else {
             println("Erro: Usuário não autenticado.")
@@ -146,22 +146,22 @@ class ListaDeComprasViewModel : ViewModel() {
     }
 
     fun getItemById(itemId: String) {
-        val userItemRef = database.child("listas").child(auth.currentUser?.uid ?: "")
-
-        userItemRef.addListenerForSingleValueEvent(object : ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                for (child in snapshot.children) { // Percorre todos os itens
-                    val item = child.getValue(Item::class.java)
-                    if (item?.id == itemId) {  // Verifica se o ID bate
-                        _item.value = item
-                        break
-                    }
+        val user = auth.currentUser
+        val uid = user?.uid
+        if (uid != null) {
+            val itemRef = database.child("listas").child(uid).child(itemId)
+            itemRef.addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    val item = snapshot.getValue(Item::class.java)
+                    _item.value = item
                 }
-            }
 
-            override fun onCancelled(error: DatabaseError) {
-                Log.e("ListaDeComprasViewModel.getItemById()", error.message)
-            }
-        })
+                override fun onCancelled(error: DatabaseError) {
+                    Log.e("ListaDeComprasViewModel.getItemById()", error.message)
+                }
+            })
+        } else {
+            println("Erro: Usuário não autenticado.")
+        }
     }
 }
