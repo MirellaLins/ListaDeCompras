@@ -23,9 +23,6 @@ class ListaDeComprasViewModel : ViewModel() {
     private val _items = MutableStateFlow<List<Item>>(emptyList())
     val items: StateFlow<List<Item>> = _items
 
-    private val _item = MutableStateFlow<Item?>(null)
-    val item: StateFlow<Item?> = _item
-
     init {
         authenticateAndFetchItems()
     }
@@ -140,26 +137,6 @@ class ListaDeComprasViewModel : ViewModel() {
                         }
                     })
             }
-        } else {
-            println("Erro: Usuário não autenticado.")
-        }
-    }
-
-    fun getItemById(itemId: String) {
-        val user = auth.currentUser
-        val uid = user?.uid
-        if (uid != null) {
-            val itemRef = database.child("listas").child(uid).child(itemId)
-            itemRef.addListenerForSingleValueEvent(object : ValueEventListener {
-                override fun onDataChange(snapshot: DataSnapshot) {
-                    val item = snapshot.getValue(Item::class.java)
-                    _item.value = item
-                }
-
-                override fun onCancelled(error: DatabaseError) {
-                    Log.e("ListaDeComprasViewModel.getItemById()", error.message)
-                }
-            })
         } else {
             println("Erro: Usuário não autenticado.")
         }
