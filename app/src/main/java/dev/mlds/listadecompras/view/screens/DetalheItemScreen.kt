@@ -105,6 +105,15 @@ fun DetalheItemScreen(
                 ) {
                     Text("Salvar Preço")
                 }
+
+                HistoricoDePrecosGrafico(
+                    precos = listOf(
+                        "01/02" to 4.99,
+                        "05/02" to 5.20,
+                        "10/02" to 5.10,
+                        "15/02" to 5.30
+                    )
+                )
             }
         }
     }
